@@ -8,7 +8,7 @@ var canvas,
     interval;
 
 function begin() {
-  //listeners.forEach(e=>xmlhttp.removeEventListener("readystate",e));
+  listeners.forEach(e=>xmlhttp.removeEventListener("readystate",e));
   xmlhttp.addEventListener("readystate",readFile);
   xmlhttp.open("GET","resources/level.txt",false);
   xmlhttp.send();
