@@ -5,8 +5,4 @@ spriteSheet.src = "resources/spriteSheet.png";
 
 function drawTile(ctx, x, y) {
   ctx.drawImage(spriteSheet, spriteWidth*1, 0, spriteWidth, spriteHeight, x, y, spriteWidth, spriteHeight);
-<<<<<<< HEAD
-=======
-  
->>>>>>> origin/master
 }
