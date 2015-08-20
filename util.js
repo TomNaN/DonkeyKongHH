@@ -5,17 +5,18 @@ var canvas,
     xmlhttp = new XMLHttpRequest(),
     listeners = [readFile],
     text,
-    interval;
+    interval,
+    map;
 
 function begin() {
   listeners.forEach(e=>xmlhttp.removeEventListener("readystate",e));
-  xmlhttp.addEventListener("readystate",readFile);
+  xmlhttp.addEventListener("readystatechange",readFile);
   xmlhttp.open("GET","resources/level.txt",false);
   xmlhttp.send();
   canvas = document.getElementById("gameCanvas");
   ctx = canvas.getContext("2d");
-  canvas.width=640;
-  canvas.height=480;
+  canvas.width = 640;
+  canvas.height = 480;
   interval = setInterval(game, 1000/60);  
 }
 function errorHandler(error){
@@ -23,12 +24,11 @@ function errorHandler(error){
   throw error;
 }
 function game() {
- // text?readMap(text):errorHandler("no map initialized");
+ text?readMap(text):errorHandler("no map initialized");
 }
 function readMap(text){
-
+  map = text.split('\n');
 }
 function readFile(){
-  text = xmlhttp.readyState==4&&xmlhttp.status==4?xmlhttp.responseText:null;
-  console.log(xmlhttp.responseText);
+  text = xmlhttp.readyState==4?xmlhttp.responseText:null;
 }
