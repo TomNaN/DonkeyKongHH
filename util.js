@@ -17,7 +17,7 @@ function begin() {
   interval = setInterval(game, 1000/60);  
 }
 function getFile(file){
-  listeners.forEach(e=>xmlhttp.removeEventListener("readystate",e));
+  listeners.forEach(function(e){xmlhttp.removeEventListener("readystate",e)});
   xmlhttp.addEventListener("readystatechange",readFile);
   xmlhttp.open("GET",file,false);
   xmlhttp.send(); 
