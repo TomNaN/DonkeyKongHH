@@ -31,7 +31,11 @@ function game() {
 }
 function readMap(text){
   map = text.replace(/\r/g,"").split('\n'); // FOR SOME REASON text HAD AN ODD \r
-  map.forEach((e,i)=>e)
+  map.forEach(function(e,i){
+    e.split('').forEach(function(e,j){
+      +e?drawTile(j*spriteWidth,i*spriteHeight):drawEmpty(j*spriteWidth,i*spriteHeight);
+    })
+  });
 }
 function readFile(){
   text = xmlhttp.readyState==4?xmlhttp.responseText:null;
