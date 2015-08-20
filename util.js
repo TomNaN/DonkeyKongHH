@@ -31,9 +31,9 @@ function game() {
 }
 function readMap(text){
   map = text.replace(/\r/g,"").split('\n'); // FOR SOME REASON text HAD AN ODD \r
-  map.forEach(function(e,i){
-    e.split('').forEach(function(e,j){
-      +e?drawTile(j*spriteWidth,i*spriteHeight):drawEmpty(j*spriteWidth,i*spriteHeight);
+  map.forEach(function(e,y){
+    e.split('').forEach(function(e,x){
+      +e?drawTile(x*spriteWidth,y*spriteHeight):drawEmpty(x*spriteWidth,y*spriteHeight);
     })
   });
 }
