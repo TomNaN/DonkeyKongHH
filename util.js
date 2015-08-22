@@ -14,6 +14,7 @@ function begin() {
   ctx = canvas.getContext("2d");
   canvas.width = 640;
   canvas.height = 480;
+  text?readMap(text):errorHandler("no map initialized");
   interval = setInterval(game, 1000/60);  
 }
 function getFile(file){
@@ -27,13 +28,19 @@ function errorHandler(error){
   throw error;
 }
 function game() {
- text?readMap(text):errorHandler("no map initialized");
+ 
+  for(var i=0;i<entities.length;i++) entities[i].draw("left");
+  //entities[0].draw("left");
 }
 function readMap(text){
   map = text.replace(/\r/g,"").split('\n'); // FOR SOME REASON text HAD AN ODD \r
   map.forEach(function(e,y){
     e.split('').forEach(function(e,x){
-      +e?drawTile(x*spriteWidth,y*spriteHeight):drawEmpty(x*spriteWidth,y*spriteHeight);
+	  if(+e==1)drawTile(x*spriteWidth,y*spriteHeight);
+	  else if(+e==0)drawEmpty(x*spriteWidth,y*spriteHeight);
+	  else if(+e==2)entities.push(new Entity("hero",x*spriteWidth,y*spriteHeight, 5));
+      //+e?drawTile(x*spriteWidth,y*spriteHeight):drawEmpty(x*spriteWidth,y*spriteHeight);
+	  //if(+e==2) entities.push(new Entity("hero",x*spriteWidth,y*spriteHeight, 5));
     })
   });
 }
